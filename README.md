@@ -54,9 +54,9 @@ poetry install
 Input data can be put in a singer or txt file inside `.secrets` folder. A sample payload is in `sample_payload` folder.
 
 
-### Create and Run Tests
+### How to run the target?
 
-You can test the `target-bird` CLI interface directly using `poetry run`:
+You can run `target-bird` CLI interface directly using `poetry run`:
 
 ```bash
 poetry run target-bird --config ./.secrets/config.json < ./.secrets/data.singer > ./.secrets/target-state.json
