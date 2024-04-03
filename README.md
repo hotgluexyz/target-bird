@@ -33,10 +33,6 @@ This target needs the following fields in the config file:
 
 Note: If you want to work with multiple workspaces add the workspace to each record's payload as `workspace_id`
 
-### Source Authentication and Authorization
-
-- [ ] `Developer TODO:` If your target requires special access on the source system, or any special authentication requirements, provide those here.
-
 ## Usage
 
 You can easily run `target-bird` by itself or in a pipeline.
