@@ -2,28 +2,26 @@
 
 `target-bird` is a Singer target for Bird.
 
-## Installation
-
-```bash
-pipx install target-bird
-```
+Build with the `Hotglue Target SDK`.
 
 ## Configuration
-
-### Accepted Config Options
-
-A full list of supported settings and capabilities for this
-target is available by running:
-
-```bash
-target-bird --about
-```
 
 ### Configure using environment variables
 
 This Singer target will automatically import any environment variables within the working directory's
 `.env` if the `--config=ENV` is provided, such that config values will be considered if a matching
 environment variable is set either in the terminal context or in the `.env` file.
+
+Config file can also be created inside `.secrets` folder as a json file.
+
+example:
+
+``` json
+{
+    "workspace_id": "000000-0000-0000-0000-000000000",
+    "api_key": "your_api_key"
+}
+```
 
 ### Config variables
 
@@ -42,8 +40,6 @@ You can easily run `target-bird` by itself or in a pipeline.
 ```bash
 target-bird --version
 target-bird --help
-# Test using the "Carbon Intensity" sample:
-tap-carbon-intensity | target-bird --config /path/to/target-bird-config.json
 ```
 
 ### Initialize your Development Environment
@@ -53,18 +49,20 @@ pipx install poetry
 poetry install
 ```
 
+### Input data
+
+Input data can be put in a singer or txt file inside `.secrets` folder. A sample payload is in `sample_payload` folder.
+
+
 ### Create and Run Tests
 
-Create tests within the `target_bird/tests` subfolder and
-  then run:
+You can test the `target-bird` CLI interface directly using `poetry run`:
 
 ```bash
-poetry run pytest
+poetry run target-bird --config ./.secrets/config.json < ./.secrets/data.singer > ./.secrets/target-state.json
 ```
 
-You can also test the `target-bird` CLI interface directly using `poetry run`:
-
-```bash
-poetry run target-bird --help
-```
+Note:
+- The command above needs both `config.json` and `data.singer` file inside `.secrets` folder.
+- The state of the target (count of succesful or failed records) will be written to `target-state` json file.
 
